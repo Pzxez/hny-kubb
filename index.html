@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>New Year 2026</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="stars"></div>
+    <div class="overlay"></div>
+
+    <!-- Scene 1: Countdown -->
+    <section id="scene-countdown" class="scene active">
+        <div class="content">
+            <h1 class="title">Countdown to</h1>
+            <h2 class="year">2026</h2>
+            <div id="timer" class="timer">
+                <div class="time-unit">
+                    <span id="days">00</span>
+                    <label>Days</label>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-unit">
+                    <span id="hours">00</span>
+                    <label>Hours</label>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-unit">
+                    <span id="minutes">00</span>
+                    <label>Minutes</label>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-unit">
+                    <span id="seconds">00</span>
+                    <label>Seconds</label>
+                </div>
+            </div>
+            <p class="subtitle">Waiting for our next chapter...</p>
+        </div>
+    </section>
+
+    <!-- Scene 2: Celebration & Button -->
+    <section id="scene-celebration" class="scene">
+        <div class="content">
+            <h1 class="glowing-text">Happy New Year<br>2026</h1>
+            <button id="open-letter-btn" class="btn-primary">Open My Letter</button>
+        </div>
+    </section>
+
+    <!-- Scene 3: The Letter -->
+    <section id="scene-letter" class="scene">
+        <div class="letter-container" id="letter-content">
+            <div class="paper">
+                <p class="date">January 1, 2026</p>
+                <div class="body">
+                    <p><strong>Happy New Year 2026 นะคะอ้วน</strong></p>
+                    <p>เค้าอยากเริ่มต้นปีนี้ด้วยการขอบคุณเธอที่อยู่ข้าง ๆ กันมา เค้าดีใจที่ได้เจอเธอนะคะ</p>
+                    <p>ต้นปี ตอนนั้นเรายังเป็นแค่คนแปลกหน้ากันอยู่เลย แต่พอสิ้นปี เรากลายเป็นแฟนกันและ
+                        เค้าอยากมีอ้วยอยู่ข้าง ๆ แบบนี้ตลอดไปเลยน้าาา 🫶</p>
+                    <p>ปี 2025 เธอคือของขวัญที่ดีที่สุดที่สำหรับเค้าเลยยย รักอ้วนนะคับ มีความสุขปี 2026 เยอะ ๆ น้าา 💗
+                    </p>
+                </div>
+                <p class="signature">Yours,<br>Punyawat</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scene 4: Gallery -->
+    <section id="scene-gallery" class="scene">
+        <div class="gallery-container">
+            <div class="photo-card" style="z-index: 1;">
+                <img src="couple_photo_1.png" alt="Couple Photo 1">
+            </div>
+            <div class="photo-card" style="z-index: 2;">
+                <img src="couple_photo_2.png" alt="Couple Photo 2">
+            </div>
+            <div class="photo-card" style="z-index: 3;">
+                <img src="couple_photo_3.png" alt="Couple Photo 3">
+            </div>
+        </div>
+        <div class="final-message">
+            <p>Thank you for walking into my life.</p>
+            <p>เค้ารักเธอน้าา จุ๊บ ๆ 😻😽</p>
+            <div class="heart">❤</div>
+        </div>
+    </section>
+
+    <!-- Audio (Optional) -->
+    <!-- Note: You would place an audio file named 'bgm.mp3' in the directory for this to work -->
+    <audio id="bgm" loop>
+        <source src="bgm.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
