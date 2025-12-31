@@ -1,0 +1,426 @@
+:root {
+    --primary-bg: #0f172a;
+    --text-color: #f8fafc;
+    --accent-gold: #fbbf24;
+    --accent-glow: #f59e0b;
+    --paper-color: #fff1f2;
+    --paper-text: #881337;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Outfit', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    height: 100vh;
+    height: 100dvh;
+    /* Dynamic viewport height for mobile */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Background Stars */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 130px 80px, #fff, rgba(0, 0, 0, 0));
+    background-size: 200px 200px;
+    opacity: 0.5;
+    z-index: 0;
+    animation: twinkle 4s infinite linear;
+}
+
+@keyframes twinkle {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-200px);
+    }
+}
+
+/* Scenes Logic */
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+    padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px;
+    z-index: 1;
+}
+
+.scene.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+}
+
+/* Typography */
+h1.title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+h2.year {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent-gold);
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+    margin-bottom: 2rem;
+}
+
+p.subtitle {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+/* Timer */
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+}
+
+.time-unit span {
+    font-size: 2rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.time-unit label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
+.separator {
+    font-size: 2rem;
+    margin-top: -1.5rem;
+    opacity: 0.5;
+}
+
+/* Celebration */
+.glowing-text {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px var(--accent-gold),
+        0 0 40px var(--accent-glow);
+    animation: pulseGlow 2s infinite alternate;
+    margin-bottom: 3rem;
+}
+
+@keyframes pulseGlow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-gold);
+    }
+
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 40px var(--accent-gold), 0 0 60px var(--accent-glow);
+    }
+}
+
+.btn-primary {
+    background: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+}
+
+.btn-primary:active {
+    background: var(--accent-gold);
+    color: var(--primary-bg);
+    transform: scale(0.95);
+}
+
+/* Letter */
+.letter-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 400px;
+    transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.paper {
+    background: var(--paper-color);
+    color: var(--paper-text);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-heading);
+    text-align: left;
+    position: relative;
+    transform-origin: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.5s;
+}
+
+.paper .date {
+    text-align: right;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.paper .body p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.paper .signature {
+    margin-top: 30px;
+    text-align: right;
+    font-weight: 700;
+}
+
+/* Slide interaction class */
+.slide-away {
+    transform: translateX(80%) rotate(5deg) scale(0.9);
+    opacity: 0.5;
+}
+
+/* Gallery */
+.gallery-container {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    /* Increased height for spread */
+    margin-bottom: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo-card {
+    position: absolute;
+    /* Keep absolute for precise zigzag positioning */
+    width: 220px;
+    background: #fff;
+    padding: 10px 10px 35px 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+/* Specific positions for zigzag "pane out" effect */
+.photo-card:nth-child(1) {
+    top: 0;
+    left: 10%;
+    transform: rotate(-6deg) scale(0.8);
+}
+
+.photo-card:nth-child(2) {
+    top: 160px;
+    right: 10%;
+    transform: rotate(4deg) scale(0.8);
+    z-index: 2;
+}
+
+.photo-card:nth-child(3) {
+    top: 320px;
+    left: 15%;
+    transform: rotate(-3deg) scale(0.8);
+    z-index: 3;
+}
+
+.photo-card img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 1;
+    object-fit: cover;
+    filter: sepia(0.1);
+}
+
+.photo-card.visible {
+    opacity: 1;
+    /* Reset scale to 1 but keep rotation */
+    animation: float 6s ease-in-out infinite;
+}
+
+.photo-card.visible:nth-child(1) {
+    transform: rotate(-6deg) scale(1);
+    animation-delay: 0s;
+}
+
+.photo-card.visible:nth-child(2) {
+    transform: rotate(4deg) scale(1);
+    animation-delay: 2s;
+}
+
+.photo-card.visible:nth-child(3) {
+    transform: rotate(-3deg) scale(1);
+    animation-delay: 4s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(var(--rot));
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(var(--rot));
+    }
+}
+
+/* Need to dynamically pass rotation to animation or just hardcode frames if simpler. 
+   Simplest: hardcode variants since there are only 3. 
+*/
+@keyframes float1 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-6deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(-6deg);
+    }
+}
+
+@keyframes float2 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(4deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(4deg);
+    }
+}
+
+@keyframes float3 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(-3deg);
+    }
+}
+
+.photo-card.visible:nth-child(1) {
+    animation: float1 5s ease-in-out infinite;
+}
+
+.photo-card.visible:nth-child(2) {
+    animation: float2 6s ease-in-out infinite 0.5s;
+}
+
+.photo-card.visible:nth-child(3) {
+    animation: float3 5.5s ease-in-out infinite 1s;
+}
+
+.final-message {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease 1s;
+}
+
+.final-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.final-message p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.heart {
+    font-size: 2rem;
+    color: #e11d48;
+    margin-top: 15px;
+    animation: beat 1.5s infinite;
+}
+
+@keyframes beat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utilities */
+.hidden {
+    display: none;
+}
